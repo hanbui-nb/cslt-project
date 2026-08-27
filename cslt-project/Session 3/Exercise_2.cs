@@ -255,6 +255,7 @@ namespace cslt_project.Session_3
             Bai_2();
             Bai_3();
             Bai_4();
+            Bai_5();
         }
     }
 }
