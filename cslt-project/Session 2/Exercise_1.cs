@@ -9,7 +9,7 @@ namespace cslt_project.Session_2
 {
     internal class Exercise_1
     {
-        public static void Main(string[] args)
+        public static void Main1(string[] args)
         {
             //1.to Add / Sum Two Numbers.
             Console.Write("1. Enter the first number: ");
