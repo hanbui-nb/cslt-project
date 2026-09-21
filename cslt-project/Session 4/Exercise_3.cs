@@ -198,7 +198,7 @@ namespace cslt_project.Session_4
                 }
             }
         }
-        public static void Main(string[] args)
+        public static void Main4(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
             Bai_1();

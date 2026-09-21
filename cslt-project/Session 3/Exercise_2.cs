@@ -152,101 +152,93 @@ namespace cslt_project.Session_3
                 Console.WriteLine($"Sinh nhật tiếp theo còn: {(int) (nextbirthday - DateTime.Now.Date).TotalDays} ngày");
             }
         }
-        enum XepLoai
-        {
-            Kiem,
-            Yeu,
-            TrungBinh,
-            Kha,
-            Gioi
-        }
+        enum Diemchu { F, D, C, B, A }
         static void Bai_5()
         {
-            int tcCSharp = 4;
-            int tcToan = 3;
-            int tcTiengAnh = 2;
-
-            Console.WriteLine("=== NHẬP ĐIỂM CÁC MÔN HỌC (THANG 10) ===");
-            Console.Write($"Lập trình C# ({tcCSharp} TC): ");
-            double diemCSharp = double.Parse(Console.ReadLine());
-
-            Console.Write($"Toán rời rạc ({tcToan} TC): ");
-            double diemToan = double.Parse(Console.ReadLine());
-
-            Console.Write($"Tiếng Anh ({tcTiengAnh} TC): ");
-            double diemTiengAnh = double.Parse(Console.ReadLine());
-
-            // 2. TÍNH ĐIỂM TRUNG BÌNH TRỌNG SỐ (GPA THANG 10)
-            int tongTinChi = tcCSharp + tcToan + tcTiengAnh;
-            double scoreAvg = (diemCSharp * tcCSharp + diemToan * tcToan + diemTiengAnh * tcTiengAnh) / tongTinChi;
-
-            // 3. LOGIC QUY ĐỔI ĐIỂM CHỮ, THANG 4 VÀ ENUM XẾP LOẠI
-            char diemChu;
-            double gpaThang4;
-            XepLoai xepLoaiHocLuc;
-
-            if (scoreAvg >= 8.5)
+            const int tc1 = 4;
+            const int tc2 = 3;
+            const int tc3 = 2;
+            Console.Write($"C# ({tc1}) TC: "); bool checkc = double.TryParse(Console.ReadLine(), out double c);
+            while (!checkc || c < 0 || c > 10)
             {
-                diemChu = 'A';
-                gpaThang4 = 4.0;
-                xepLoaiHocLuc = XepLoai.Gioi;
-            }
-            else if (scoreAvg >= 7.0)
-            {
-                diemChu = 'B';
-                gpaThang4 = 3.0;
-                xepLoaiHocLuc = XepLoai.Kha;
-            }
-            else if (scoreAvg >= 5.5)
-            {
-                diemChu = 'C';
-                gpaThang4 = 2.0;
-                xepLoaiHocLuc = XepLoai.TrungBinh;
-            }
-            else if (scoreAvg >= 4.0)
-            {
-                diemChu = 'D';
-                gpaThang4 = 1.0;
-                xepLoaiHocLuc = XepLoai.Yeu;
-            }
-            else
-            {
-                diemChu = 'F';
-                gpaThang4 = 0.0;
-                xepLoaiHocLuc = XepLoai.Kiem;
-            }
-
-            // 4. XUẤT BẢNG ĐIỂM CHI TIẾT VÀ KẾT QUẢ
-            Console.WriteLine("\n================ BẢNG ĐIỂM CHUẨN ================");
-
-            // Căn lề cột: Môn học (-18), Số TC (8), Điểm (10)
-            string headerFormat = "{0,-18} | {1,8} | {2,10}";
-            Console.WriteLine(headerFormat, "Tên Môn Học", "Số TC", "Điểm Số");
-            Console.WriteLine(new string('-', 45));
-
-            Console.WriteLine(headerFormat, "Lập trình C#", tcCSharp, diemCSharp.ToString("F1"));
-            Console.WriteLine(headerFormat, "Toán rời rạc", tcToan, diemToan.ToString("F1"));
-            Console.WriteLine(headerFormat, "Tiếng Anh", tcTiengAnh, diemTiengAnh.ToString("F1"));
-
-            Console.WriteLine(new string('-', 45));
-
-            // In kết quả tổng hợp làm tròn 2 chữ số thập phân (`:F2`)
-            Console.WriteLine($"\n--- KẾT QUẢ TỔNG HỢP ---");
-            Console.WriteLine($"Điểm TB Thang 10 : {scoreAvg:F2}");
-            Console.WriteLine($"Điểm Chữ Quy Đổi : {diemChu}");
-            Console.WriteLine($"Điểm GPA Thang 4 : {gpaThang4:F1}");
-            Console.WriteLine($"Xếp Loại Học Lực : {DichXepLoai(xepLoaiHocLuc)}");
-            static string DichXepLoai(XepLoai xl)
-            {
-                return xl switch
+                if (!checkc)
                 {
-                    XepLoai.Gioi => "Giỏi / Xuất sắc",
-                    XepLoai.Kha => "Khá",
-                    XepLoai.TrungBinh => "Trung bình",
-                    XepLoai.Yeu => "Yếu",
-                    _ => "Kém (Trượt)"
-                };
+                    Console.WriteLine("Định dạng không hợp lệ, chỉ nhập số. Vui lòng nhập lại!");
+                }
+                else
+                {
+                    Console.WriteLine("Nhập điểm số theo thang 10. Vui lòng nhập lại!");
+                }
+                Console.Write($"C# ({tc1}) TC: "); checkc = double.TryParse(Console.ReadLine(), out c);
             }
+            Console.Write($"Toán ({tc2}) TC: "); bool checkmath = double.TryParse(Console.ReadLine(), out double math);
+            while (!checkmath || math < 0 || math > 10)
+            {
+                if (!checkmath)
+                {
+                    Console.WriteLine("Định dạng không hợp lệ, chỉ nhập số. Vui lòng nhập lại!");
+                }
+                else
+                {
+                    Console.WriteLine("Nhập điểm số theo thang 10. Vui lòng nhập lại!");
+                }
+                Console.Write($"Toán ({tc2}) TC: "); checkmath = double.TryParse(Console.ReadLine(), out math);
+            }
+            Console.Write($"C# ({tc3}) TC: "); bool checkeng = double.TryParse(Console.ReadLine(), out double eng);
+            while (!checkeng || eng < 0 || eng > 10)
+            {
+                if (!checkeng)
+                {
+                    Console.WriteLine("Định dạng không hợp lệ, chỉ nhập số. Vui lòng nhập lại!");
+                }
+                else
+                {
+                    Console.WriteLine("Nhập điểm số theo thang 10. Vui lòng nhập lại!");
+                }
+                Console.Write($"Tiếng Anh ({tc3}) TC: "); checkeng = double.TryParse(Console.ReadLine(), out eng);
+            }
+            double dtb = (c * tc1 + math * tc2 + eng * tc3) / (tc1 + tc2 + tc3);
+            string diemchu;
+            double gpa;
+            string xeploai;
+            if (dtb >= 8.5)
+            {
+                diemchu = Diemchu.A.ToString();
+                gpa = (int)Diemchu.A;
+                xeploai = "Xuất sắc / Giỏi";
+            }
+            else if (dtb >= 7) 
+            {
+                diemchu = Diemchu.B.ToString();
+                gpa = (int)Diemchu.B;
+                xeploai = "Khá";
+            }
+            else if (dtb >= 5.5) 
+            {
+                diemchu = Diemchu.C.ToString();
+                gpa = (int)Diemchu.C;
+                xeploai = "Trung bình";
+            }
+            else if (dtb >= 4) 
+            {
+                diemchu = Diemchu.D.ToString();
+                gpa = (int)Diemchu.D;
+                xeploai = "Yếu";
+            }
+            else 
+            {
+                diemchu = Diemchu.F.ToString();
+                gpa = (int)Diemchu.F;
+                xeploai = "Kém (Trượt)";
+            }
+            Console.WriteLine($"Điểm TB Thang 10: {Math.Round(dtb, 2)}");
+            Console.WriteLine($"Điểm Chữ Quy Đổi: {diemchu}");
+            Console.WriteLine($"Điểm GPA Thang 4: {Math.Round(gpa, 2)}");
+            Console.WriteLine($"Xếp Loại Học Lực: {xeploai}");
+        }
+        static void Bai_6()
+        {
+
         }
         public static void Main3(string[] args)
         {

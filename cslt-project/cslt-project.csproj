@@ -8,4 +8,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Session 8\" />
+    <Folder Include="Session 6\" />
+    <Folder Include="Session 5\" />
+  </ItemGroup>
+
 </Project>
