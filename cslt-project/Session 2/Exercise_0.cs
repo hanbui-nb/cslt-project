@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace cslt_project.Session_2
 {
-    internal class Exercise_1
+    internal class Exercise_0
     {
         public static void Main2(string[] args)
         {

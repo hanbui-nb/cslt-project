@@ -236,9 +236,92 @@ namespace cslt_project.Session_3
             Console.WriteLine($"Điểm GPA Thang 4: {Math.Round(gpa, 2)}");
             Console.WriteLine($"Xếp Loại Học Lực: {xeploai}");
         }
+        static string xoadau(string text)
+        {
+            string normalized = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in normalized)
+            {
+                System.Globalization.UnicodeCategory uc = System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c);
+                if (uc != System.Globalization.UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(c);
+                }
+            }
+            return sb.ToString()
+                     .Normalize(NormalizationForm.FormC)
+                     .Replace('đ', 'd')
+                     .Replace('Đ', 'D');
+        }
         static void Bai_6()
         {
+            Console.Write("Nhập họ tên thô: "); string input = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine("Họ tên không được để trống!");
+                return;
+            }
+            string[] tu = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (tu.Length == 0)
+            {
+                Console.WriteLine("Họ tên không hợp lệ!");
+                return;
+            }
+            for (int i = 0; i < tu.Length; i++)
+            {
+                string kitu = tu[i].ToLower();
+                tu[i] = char.ToUpper(kitu[0]) + kitu.Substring(1);
+            }
+            string chuan = string.Join(" ", tu);
+            string ho = tu[0];
+            string ten = tu[tu.Length - 1];
+            string dem = "";
+            if (tu.Length > 2)
+            {
+                dem = string.Join(" ", tu, 1, tu.Length - 2);
+            }
+            else if (tu.Length == 2)
+            {
+                dem = "";
+            }
+            string hovadem = "";
+            for (int i = 0; i < tu.Length - 1; i++)
+            {
+                hovadem += tu[i].ToLower();
+            }
+            string rawusername = ten.ToLower() + "." + hovadem;
+            string username = xoadau(rawusername);
+            string email = username + "@company.edu.vn";
+            Console.WriteLine($"Họ tên chuẩn hóa: {chuan}");
+            if (string.IsNullOrEmpty(dem))
+            {
+                Console.WriteLine($"Họ: {ho} | Tên: {ten}");
+            }
+            else
+            {
+                Console.WriteLine($"Họ: {ho} | Tên đệm: {dem} | Tên: {ten}");
+            }
 
+            Console.WriteLine($"Username tạo tự động: {username}");
+            Console.WriteLine($"Email cấp phát: {email}");
+        }
+        static void Bai_7()
+        {
+            Console.Write("Quãng đường (km): ");
+            double duong = double.Parse(Console.ReadLine());
+            Console.Write("Mức tiêu hao (L/100km): ");
+            double tieuhao = double.Parse(Console.ReadLine());
+            Console.Write("Giá xăng (VNĐ/Lít): ");
+            decimal gia = decimal.Parse(Console.ReadLine());
+            Console.Write("Số người đi: ");
+            int soluong = int.Parse(Console.ReadLine());
+            double tongtieuhao = (duong / 100) * tieuhao;
+            decimal tongchiphi = (decimal)tongtieuhao * gia;
+            decimal chiphicanhan = tongchiphi / soluong;
+            decimal canhan = Math.Ceiling(chiphicanhan / 1000m) * 1000m;
+            Console.WriteLine($"Tổng nhiên liệu tiêu thụ: {tongtieuhao:N2} Lít");
+            Console.WriteLine($"Tổng chi phí xăng dầu: {tongchiphi:N0} VNĐ");
+            Console.WriteLine($"Chi phí mỗi người: {canhan:N0} VNĐ");
         }
         public static void Main3(string[] args)
         {
@@ -248,6 +331,8 @@ namespace cslt_project.Session_3
             Bai_3();
             Bai_4();
             Bai_5();
+            Bai_6();
+            Bai_7();
         }
     }
 }
